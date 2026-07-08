@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Ronnie Tattoo | Košice & Okolie</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Oswald:wght@400;700&family=Permanent+Marker&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Reset a základné nastavenia */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: #0b0b0b;
+            color: #ffffff;
+            font-family: 'Oswald', sans-serif;
+            letter-spacing: 1px;
+            overflow-x: hidden;
+            /* Pridané kvôli fixnému menu, aby neprekrývalo vrch hero sekcie */
+            padding-top: 80px; 
+        }
+
+        /* --- EXKLUZÍVNY GRAFICKÝ VRCHNÝ PANEL (NAVBAR) --- */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 80px;
+            background-color: rgba(10, 10, 10, 0.92);
+            border-bottom: 1px solid #1f1f1f;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 50px;
+            z-index: 1000;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.7);
+        }
+
+        /* TUNING LOGA - Čistý štýl s neónovým nádychom */
+        .navbar .logo {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .navbar .logo span {
+            color: #ff3333;
+            text-shadow: 0 0 12px rgba(255, 51, 51, 0.7), 0 0 25px rgba(255, 51, 51, 0.4);
+        }
+
+        .navbar .logo:hover {
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.4), 0 0 20px rgba(255, 51, 51, 0.6);
+        }
+
+        /* ODKAZY V MENU - Animované podčiarknutie */
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 35px;
+        }
+
+        .nav-links a {
+            color: #eeeeee;
+            text-decoration: none;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            font-weight: bold;
+            letter-spacing: 1.5px;
+            position: relative;
+            padding: 6px 0;
+            transition: all 0.3s ease;
+        }
+
+        /* Červená linka pod textom, ktorá sa pri hoveri roztiahne */
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #ff3333;
+            box-shadow: 0 0 10px #ff3333;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #ff3333;
+            text-shadow: 0 0 8px rgba(255, 51, 51, 0.4);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hlavný hero baner - ROZSVIETENÝ (jemnejší dymový filter) */
+        .hero {
+            position: relative;
+            height: calc(100vh - 80px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(11, 11, 11, 0.85)), url('https://i.ibb.co/DgWh4LLj/IMG-0907.jpg') no-repeat center center/cover;
+            padding: 20px;
+        }
+
+        .hero h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 4rem;
+            color: #fff;
+            text-shadow: 2px 2px 15px rgba(0, 0, 0, 0.8);
+            margin-bottom: 10px;
+        }
+
+        .hero .tagline {
+            font-family: 'Permanent Marker', cursive;
+            font-size: 2rem;
+            color: #ff3333;
+            transform: rotate(-2deg);
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.9);
+            margin-bottom: 30px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            color: #fff;
+            text-shadow: 1px 1px 8px rgba(0, 0, 0, 0.9);
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        /* Tlačidlá */
+        .btn {
+            background-color: #ff3333;
+            color: #ffffff;
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            text-decoration: none;
+            border: 2px solid #ff3333;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: inline-block;
+            box-shadow: 0 4px 15px rgba(255, 51, 51, 0.4);
+        }
+
+        .btn:hover {
+            background-color: transparent;
+            color: #ff3333;
+            box-shadow: 0 0 15px #ff3333;
+        }
+
+        /* Sekcie spoločné nastavenia */
+        section {
+            padding: 90px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+            text-transform: uppercase;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background-color: #ff3333;
+            margin: 20px auto 0 auto;
+            box-shadow: 0 0 10px #ff3333;
+        }
+
+        /* ROZDELENÁ SEKCIA PRE DOBRÉ ZDOBENIE STRÁNKY */
+        .about-container {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 40px;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .grid-philosophy {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        .feature-box {
+            background: #121212;
+            padding: 25px;
+            border-left: 4px solid #ff3333;
+            border-top: 1px solid #1a1a1a;
+            border-right: 1px solid #1a1a1a;
+            border-bottom: 1px solid #1a1a1a;
+        }
+
+        .feature-box h3 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            color: #fff;
+        }
+
+        .feature-box p {
+            color: #ccc;
+            line-height: 1.5;
+        }
+
+        /* Druhá fotka - bez okraja pre čisté splývanie */
+        .about-decoration-img {
+            width: 100%;
+            height: 550px;
+            background: url('https://i.ibb.co/YFwTRbtv/IMG-0908.jpg') no-repeat center center/cover;
+            border-radius: 4px;
+        }
+
+        /* GALÉRIA */
+        .gallery-text {
+            text-align: center;
+            color: #aaa;
+            max-width: 700px;
+            margin: -20px auto 40px auto;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery-item {
+            background-color: #121212;
+            border: 1px solid #222;
+            height: 350px;
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .gallery-item:hover {
+            border-color: #ff3333;
+            box-shadow: 0 0 15px rgba(255, 51, 51, 0.3);
+            transform: translateY(-3px);
+        }
+
+        /* --- LIGHTBOX (ZVÄČŠENIE OBRÁZKA) --- */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(5, 5, 5, 0.95);
+            backdrop-filter: blur(8px);
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .lightbox.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .lightbox-img {
+            max-width: 90%;
+            max-height: 85vh;
+            object-fit: contain;
+            border: 2px solid #222;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+
+        .lightbox.active .lightbox-img {
+            transform: scale(1);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            color: #fff;
+            font-size: 2.5rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.2s;
+            user-select: none;
+        }
+
+        .lightbox-close:hover {
+            color: #ff3333;
+        }
+
+        /* DOMÁCI SERVIS - Nový dravý červeno-čierny gradient */
+        .mobile-service {
+            background: linear-gradient(135deg, #0b0b0b 30%, #440000 100%);
+            text-align: center;
+            max-width: 100%;
+            border-top: 1px solid #222;
+            border-bottom: 1px solid #222;
+            padding: 100px 20px;
+        }
+
+        .mobile-banner {
+            max-width: 750px;
+            margin: 0 auto;
+            padding: 50px 30px;
+            background-color: rgba(0, 0, 0, 0.85);
+        }
+
+        .mobile-banner h2 {
+            font-family: 'Permanent Marker', cursive;
+            color: #ff3333;
+            font-size: 2.6rem;
+            margin-bottom: 20px;
+        }
+
+        /* FORMULÁR OBJEDNÁVKY a KONTAKTY */
+        .order-section {
+            background-color: #0d0d0d;
+        }
+
+        /* Kontaktný panel nad formulárom */
+        .contact-info-box {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            max-width: 700px;
+            margin: 0 auto 30px auto;
+            background: #121212;
+            padding: 20px;
+            border: 1px solid #222;
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        .contact-item {
+            flex: 1;
+        }
+
+        .contact-item h4 {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .contact-item a, .contact-item p {
+            font-size: 1.3rem;
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .contact-item a:hover {
+            color: #ff3333;
+        }
+
+        .order-notice {
+            background-color: rgba(255, 51, 51, 0.15);
+            border: 1px dashed #ff3333;
+            padding: 20px;
+            border-radius: 4px;
+            max-width: 700px;
+            margin: 0 auto 40px auto;
+            color: #fff;
+            font-size: 1.05rem;
+            line-height: 1.5;
+        }
+
+        .order-notice .strong-text {
+            color: #ff3333;
+            font-weight: bold;
+        }
+
+        form {
+            max-width: 700px;
+            margin: 0 auto;
+            background: #121212;
+            padding: 40px;
+            border: 1px solid #222;
+            border-radius: 4px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #ccc;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%;
+            padding: 14px;
+            background-color: #1a1a1a;
+            border: 1px solid #333;
+            color: #fff;
+            outline: none;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+            border-color: #ff3333;
+            box-shadow: 0 0 10px rgba(255, 51, 51, 0.2);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        form .btn {
+            width: 100%;
+            background-color: #ff3333;
+            color: #fff;
+            border: 2px solid #ff3333;
+            padding: 16px;
+        }
+
+        /* FOOTER */
+        .footer {
+            padding: 60px 20px;
+            text-align: center;
+            background-color: #050505;
+            border-top: 1px solid #111;
+        }
+
+        .footer p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* Responzivita */
+        @media (max-width: 992px) {
+            .about-container {
+                grid-template-columns: 1fr;
+            }
+            .about-decoration-img {
+                height: 400px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 0 20px;
+                height: 70px;
+            }
+            body {
+                padding-top: 70px;
+            }
+            .navbar .logo {
+                font-size: 1.4rem;
+            }
+            .nav-links {
+                gap: 15px;
+            }
+            .nav-links a {
+                font-size: 0.85rem;
+            }
+            .form-row, .contact-info-box {
+                grid-template-columns: 1fr;
+                flex-direction: column;
+                gap: 20px;
+            }
+            .hero h1 { font-size: 2.6rem; }
+            .hero .tagline { font-size: 1.5rem; }
+            form { padding: 25px 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="#home" class="logo">THE RONNIE <span>TATTOO</span></a>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#filozofia">Filozofia</a></li>
+            <li><a href="#galeria">Gallery</a></li>
+            <li><a href="#motivy">Motívy</a></li>
+            <li><a href="#kontakty">Contacts</a></li>
+        </ul>
+    </nav>
+
+    <section id="home" class="hero">
+        <h1>THE RONNIE TATTOO</h1>
+        <div class="tagline">Vášeň namiesto licenčnej pretvárky</div>
+        <p>Zlomok ceny oproti predraženým salónom. Žiadne korporátne reči, len čisté umenie, top hygiena a 100% spokojnosť.</p>
+        <a href="#objednavka" class="btn">Chcem tetovanie</a>
+    </section>
+
+    <section id="filozofia">
+        <h2 class="section-title">PREČO ÍSŤ KU MNE?</h2>
+        
+        <div class="about-container">
+            <div class="grid-philosophy">
+                <div class="feature-box">
+                    <h3>Zlomok ceny salónov</h3>
+                    <p>Nedriem ťa z kože predtým, než sa vôbec dotknem ihly. Dostaneš špičkovú kérku za férovú cenu, ktorú ti v salóne nedajú.</p>
+                </div>
+                <div class="feature-box">
+                    <h3>Vášeň na prvom mieste</h3>
+                    <p>Nerobím to ako na bežiacom páse od deviatej do piatej. Každý návrh a každý vpich robím s maximálnym nasadením, kým nie si na 100% spokojný.</p>
+                </div>
+                <div class="feature-box">
+                    <h3>100% Bezpečnosť & Hygiena</h3>
+                    <p>Používam výhradne profesionálne ihly a prémiové importované atramenty. Všetko sa otvára priamo pred tebou. Hygiena je pre mňa svätá.</p>
+                </div>
+                <div class="feature-box">
+                    <h3>Každý odchádza spokojný</h3>
+                    <p>Neodídeš, kým kérka nevyzerá presne tak, ako si si vysníval. Moja najlepšia vizitka je tvoj úsmev, keď sa pozrieš do zrkadla.</p>
+                </div>
+            </div>
+
+            <div class="about-decoration-img"></div>
+        </div>
+    </section>
+
+    <section class="mobile-service">
+        <div class="mobile-banner">
+            <h2>PRÍDEM AŽ K TEBE DOMOV</h2>
+            <p style="font-size: 1.2rem; line-height: 1.6; text-transform: uppercase;">
+                Nemusíš nikam chodiť. V rámci <strong>Košíc a okolia</strong> viem prísť kompletne vybavený priamo ku tebe. Tetovanie v tvojom maximálnom pohodlí.
+            </p>
+        </div>
+    </section>
+
+    <section id="galeria">
+        <h2 class="section-title">Moje Výtvory</h2>
+        <p class="gallery-text">Kompletná galéria mojich reálnych prác. Sleduj tie čisté línie, detaily a precízne tieňovanie.</p>
+        
+        <div class="gallery-grid">
+            <div class="gallery-item" onclick="openLightbox('https://i.ibb.co/zhQ6YRv9/image.jpg')" style="background: url('https://i.ibb.co/zhQ6YRv9/image.jpg') center center/cover;"></div>
+            <div class="gallery-item" onclick="openLightbox('https://i.ibb.co/KjmL00kL/image.jpg')" style="background: url('https://i.ibb.co/KjmL00kL/image.jpg') center center/cover;"></div>
+
+            <div class="gallery-item" onclick="openLightbox('https://i.postimg.cc/mgj2y06k/IMG-0907.jpg')" style="background: url('https://i.postimg.cc/mgj2y06k/IMG-0907.jpg') center center/cover;"></div>
+            <div class="gallery-item" onclick="openLightbox('https://i.postimg.cc/sgsgSVKQ/IMG-0908.jpg')" style="background: url('https://i.postimg.cc/sgsgSVKQ/IMG-0908.jpg') center center/cover;"></div>
+            <div class="gallery-item" onclick="openLightbox('https://i.postimg.cc/Bn4nDqN2/IMG-0909.jpg')" style="background: url('https://i.postimg.cc/Bn4nDqN2/IMG-0909.jpg') center center/cover;"></div>
+            <div class="gallery-item" onclick="openLightbox('https://i.postimg.cc/pLRL82kp/IMG-0910.jpg')" style="background: url('https://i.postimg.cc/pLRL82kp/IMG-0910.jpg') center center/cover;"></div>
+            <div class="gallery-item" onclick="openLightbox('https://i.postimg.cc/jStSNsvq/IMG-0911.jpg')" style="background: url('https://i.postimg.cc/jStSNsvq/IMG-0911.jpg') center center/cover;"></div>
+            <div class="gallery-item" onclick="openLightbox('https://i.postimg.cc/2SrSvzTz/IMG-0912.jpg')" style="background: url('https://i.postimg.cc/2SrSvzTz/IMG-0912.jpg') center center/cover;"></div>
+            <div class="gallery-item" onclick="openLightbox('https://i.postimg.cc/0yPym8ZP/IMG-0913.jpg')" style="background: url('https://i.postimg.cc/0yPym8ZP/IMG-0913.jpg') center center/cover;"></div>
+            <div class="gallery-item" onclick="openLightbox('https://i.postimg.cc/K8x8LZQh/IMG-0914.jpg')" style="background: url('https://i.postimg.cc/K8x8LZQh/IMG-0914.jpg') center center/cover;"></div>
+            <div class="gallery-item" onclick="openLightbox('https://i.postimg.cc/vHWmc1rP/IMG-0915.jpg')" style="background: url('https://i.postimg.cc/vHWmc1rP/IMG-0915.jpg') center center/cover;"></div>
+            <div class="gallery-item" onclick="openLightbox('https://i.postimg.cc/bNQvsGxm/IMG-0916.jpg')" style="background: url('https://i.postimg.cc/bNQvsGxm/IMG-0916.jpg') center center/cover;"></div>
+            <div class="gallery-item" onclick="openLightbox('https://i.postimg.cc/KvnYRKPJ/IMG-0917.jpg')" style="background: url('https://i.postimg.cc/KvnYRKPJ/IMG-0917.jpg') center center/cover;"></div>
+            <div class="gallery-item" onclick="openLightbox('https://i.postimg.cc/RVc0N37G/IMG-0918.jpg')" style="background: url('https://i.postimg.cc/RVc0N37G/IMG-0918.jpg') center center/cover;"></div>
+            <div class="gallery-item" onclick="openLightbox('https://i.postimg.cc/pXDdp9fJ/IMG-0919.jpg')" style="background: url('https://i.postimg.cc/pXDdp9fJ/IMG-0919.jpg') center center/cover;"></div>
+        </div>
+    </section>
+
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <span class="lightbox-close">&times;</span>
+        <img id="lightbox-img" class="lightbox-img" src="" alt="Zväčšený detail">
+    </div>
+
+    <section id="motivy" style="background-color: #090909; max-width: 100%;">
+        <div style="max-width: 1100px; margin: 0 auto; padding: 10px 0;">
+            <h2 class="section-title">Odporúčané Motívy</h2>
+            <p class="gallery-text">
+                Voľné flash návrhy, ktoré ma bavia najviac a máš ich za zvýhodnenú cenu. <br>
+                <strong>Ale nezabúdaj:</strong> Môžeš prísť s akýmkoľvek <strong>vlastným obrázkom</strong>, pošli mi ho cez formulár a dohodneme sa!
+            </p>
+            
+            <div class="gallery-grid" id="flash-container">
+                <div class="gallery-item" onclick="openLightbox('https://ibb.co/5W4fYCJN')" style="background: url('https://ibb.co/5W4fYCJN') center center/cover;"></div>
+                <div class="gallery-item" onclick="openLightbox('https://ibb.co/bgrw3R18')" style="background: url('https://ibb.co/bgrw3R18') center center/cover;"></div>
+                <div class="gallery-item" onclick="openLightbox('https://ibb.co/8n0dsbdb')" style="background: url('https://ibb.co/8n0dsbdb') center center/cover;"></div>
+                <div class="gallery-item" onclick="openLightbox('https://ibb.co/b5FFkb6m')" style="background: url('https://ibb.co/b5FFkb6m') center center/cover;"></div>
+                <div class="gallery-item" onclick="openLightbox('https://ibb.co/TBKWwWRG')" style="background: url('https://ibb.co/TBKWwWRG') center center/cover;"></div>
+                <div class="gallery-item" onclick="openLightbox('https://ibb.co/4ZQR231Y')" style="background: url('https://ibb.co/4ZQR231Y') center center/cover;"></div>
+                <div class="gallery-item" onclick="openLightbox('https://ibb.co/Vp0XwLMm')" style="background: url('https://ibb.co/Vp0XwLMm') center center/cover;"></div>
+                <div class="gallery-item" onclick="openLightbox('https://ibb.co/TMRMctYQ')" style="background: url('https://ibb.co/TMRMctYQ') center center/cover;"></div>
+                <div class="gallery-item" onclick="openLightbox('https://ibb.co/qMj85SMm')" style="background: url('https://ibb.co/qMj85SMm') center center/cover;"></div>
+                <div class="gallery-item" onclick="openLightbox('https://ibb.co/dRR5GQY')" style="background: url('https://ibb.co/dRR5GQY') center center/cover;"></div>
+                <div class="gallery-item" onclick="openLightbox('https://ibb.co/JWbk704m')" style="background: url('https://ibb.co/JWbk704m') center center/cover;"></div>
+                <div class="gallery-item" onclick="openLightbox('https://ibb.co/PzPMVkhs')" style="background: url('https://ibb.co/PzPMVkhs') center center/cover;"></div>
+                <div class="gallery-item" onclick="openLightbox('https://ibb.co/yB0kmTVx')" style="background: url('https://ibb.co/yB0kmTVx') center center/cover;"></div>
+                <div class="gallery-item" onclick="openLightbox('https://ibb.co/tPm8j8Z6')" style="background: url('https://ibb.co/tPm8j8Z6') center center/cover;"></div>
+                <div class="gallery-item" onclick="openLightbox('https://ibb.co/YTh5LNcD')" style="background: url('https://ibb.co/YTh5LNcD') center center/cover;"></div>
+                <div class="gallery-item" onclick="openLightbox('https://ibb.co/NRXY8zk')" style="background: url('https://ibb.co/NRXY8zk') center center/cover;"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="kontakty" class="order-section">
+        <h2 class="section-title">Kontakty a Rezervácia</h2>
+        
+        <div class="contact-info-box">
+            <div class="contact-item">
+                <h4>📞 Telefónne číslo</h4>
+                <a href="tel:0948465394">0948 465 394</a>
+            </div>
+            <div class="contact-item">
+                <h4>📸 Instagram</h4>
+                <a href="https://instagram.com/" target="_blank">@ronnie_tattoo_profil</a>
+            </div>
+        </div>
+        
+        <div class="order-notice">
+            <span class="strong-text">⚠️ DÔLEŽITÁ POZNÁMKA PO ODOSLANÍ:</span> Po kliknutí na tlačidlo sa ti automaticky otvorí tvoja e-mailová aplikácia. <strong>Nezabudni do prílohy e-mailu priložiť obrázok alebo predlohu</strong>, ktorú chceš tetovať! Bez toho sa nepohneme.
+        </div>
+
+        <form id="objednavka" onsubmit="sendTattooEmail(event)">
+            <div class="form-group">
+                <label for="name">Meno a Priezvisko</label>
+                <input type="text" id="name" placeholder="Napr. Ján Kováč" required>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="email">Tvoj E-mail</label>
+                    <input type="email" id="email" placeholder="Napr. meno@gmail.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Telefónne číslo</label>
+                    <input type="tel" id="phone" placeholder="Napr. 0948 123 456" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="delivery">Spôsob realizácie</label>
+                <select id="delivery">
+                    <option value="Chcem, aby Ronnie prišiel ku mne domov (Košice a okolie)">Chcem dojazd ku mne domov (Košice a okolie)</option>
+                    <option value="Prídem ja osobne po dohode">Prídem ja (osobná dohoda)</option>
+                </select>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="bodypart">Časť tela na tetovanie</label>
+                    <input type="text" id="bodypart" placeholder="Napr. predlaktie, lýtko..." required>
+                </div>
+                <div class="form-group">
+                    <label for="size">Orientačná veľkosť (v cm)</label>
+                    <input type="text" id="size" placeholder="Napr. 10x5 cm" required>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="date">Požadovaný dátum</label>
+                    <input type="date" id="date" required>
+                </div>
+                <div class="form-group">
+                    <label for="time">Požadovaný čas</label>
+                    <input type="time" id="time" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="details">Bližšie detaily k tvojej predstave</label>
+                <textarea id="details" rows="4" placeholder="Sem mi napíš čokoľvek bližšie o tvojej predstave..."></textarea>
+            </div>
+
+            <button type="submit" class="btn">Odoslať dopyt na e-mail</button>
+        </form>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; 2026 The Ronnie Tattoo. Created for underground passion. Všetky práva vyhradené.</p>
+    </footer>
+
+    <script>
+        // FUNKCIA NA ZVÄČŠENIE OBRÁZKOV (LIGHTBOX) - Funguje pre Galériu aj Motívy
+        function openLightbox(imageSrc) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            
+            lightboxImg.src = imageSrc;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden'; 
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.remove('active');
+            document.body.style.overflow = 'auto'; 
+        }
+
+        // SCRIPT PRE ODOSLANIE NA MAIL
+        function sendTattooEmail(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const clientEmail = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const delivery = document.getElementById('delivery').value;
+            const bodypart = document.getElementById('bodypart').value;
+            const size = document.getElementById('size').value;
+            const date = document.getElementById('date').value;
+            const time = document.getElementById('time').value;
+            const details = document.getElementById('details').value;
+
+            const emailSubject = `Nová objednávka na kérku - ${name}`;
+            
+            let emailBody = `Čau Ronnie,\n\nMám záujem o tetovanie. Tu sú moje údaje:\n\n`;
+            emailBody += `👤 Meno: ${name}\n`;
+            emailBody += `📧 E-mail klienta: ${clientEmail}\n`;
+            emailBody += `📞 Telefón: ${phone}\n`;
+            emailBody += `🚗 Spôsob realizácie: ${delivery}\n\n`;
+            emailBody += `📐 ŠPECIFIKÁCIA KÉRKY:\n`;
+            emailBody += `💪 Časť tela: ${bodypart}\n`;
+            emailBody += `📏 Veľkosť: ${size}\n`;
+            emailBody += `📅 Termín: ${date} o ${time}\n\n`;
+            emailBody += `📝 Detaily/Predstava:\n${details}\n\n`;
+            emailBody += `--------------------------------------------------\n`;
+            emailBody += `⚠️ POZNÁMKA PRE KLIENTA: Nezabudni teraz k tomuto e-mailu pripojiť do prílohy obrázok alebo predlohu, ktorú chceš vytetovať!`;
+
+            const mailtoUrl = `mailto:ronnyss996633@icloud.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+            window.location.href = mailtoUrl;
+        }
+    </script>
+
+</body>
+</html>
